@@ -20,3 +20,4 @@ typedef struct{
 // function prototypes
 void dispWAVHeader(char []);
 void dispWAVData(char []);
+void printID(char []);
