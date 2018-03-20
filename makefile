@@ -18,3 +18,8 @@ tar :
 
 backup :
 	scp project.tar e1700698@shell.puv.fi:.
+
+git :
+	git add *.c *.h makefile
+	git commit -a --allow-empty-message -m ''
+	git push origin master
