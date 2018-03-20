@@ -14,7 +14,7 @@ printID(char id[]){
 // function definition of dispWAVData()
 void
 dispWAVData(char filename[]){
-	int i, j;	// loop counters
+	register i, j;	// loop counters
 	FILE* fp;	// file handler to open the file "test.wav"
 	double rms[80], sum;	// 80 pieces of RMS value
 	short samples[SAMPLERATE];	// totally 16000 samples in 1 sec
