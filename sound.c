@@ -1,4 +1,5 @@
 #include "sound.h"
+#include "screen.h"
 #include <stdio.h>
 #include <math.h>
 // function definition of printID()
@@ -27,12 +28,17 @@ dispWAVData(char filename[]){
 	fread(&mh, sizeof(mh), 1, fp);
 	fread(samples, sizeof(short), SAMPLERATE, fp);
 	fclose(fp);
+	clearScreen();
 	for(i = 0; i < 80; i++){
 		for(j = 0, sum = 0.0; j < SAMPLERATE / 80; j++){
 			sum += pow(samples[j + i * 200], 2.0);
 		}
 		rms[i] = sqrt(sum / 200);
-		printf("rms[%d]: %10.4f\n", i, rms[i]);
+#ifdef DEBUG
+		printf("rms[%d]: %10.4f, dB = %10.4f\n", i, rms[i], 20*log10(rms[i]));
+#else
+		dispBar(i, 20*log10(rms[i]));
+#endif
 	}
 }
 
@@ -41,7 +47,7 @@ void
 dispWAVHeader(char filename[]){
 	FILE *fp;
 	WAVHeader mh;	// an instance of WAVHeader struct
-	
+		
 	// open the test.wav file for reading
 	fp = fopen(filename, "r");
 	if(fp == NULL){

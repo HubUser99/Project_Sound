@@ -23,3 +23,8 @@ git :
 	git add *.c *.h makefile
 	git commit -a --allow-empty-message -m ''
 	git push origin master
+
+plot :
+	scp test.wav ../PySound/
+	python3 ../PySound/plot.py
+	scp graph.png e1700698@shell.puv.fi:.	
