@@ -1,4 +1,5 @@
 #include "sound.h"
+#include "screen.h"
 #include <stdlib.h>
 #include <signal.h>
 
@@ -7,7 +8,7 @@ main(void){
 	int ret;
 	while(1){		// loop forever
 		// run system command "arecord" to record 1 sec of wav
-		ret = system("arecord -r16000 -c1 -f S16_LE -d1 test.wav");
+		ret = system("arecord -q -r16000 -c1 -f S16_LE -d1 test.wav");
 		if(WIFSIGNALED(ret) && (WTERMSIG(ret) == SIGINT)) break;
 		// display WAV header
 		dispWAVHeader("test.wav");
