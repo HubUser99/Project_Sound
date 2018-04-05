@@ -1,11 +1,11 @@
-OBJ = main.o comm.o sound.o screen.o 
-DEPS = sound.h screen.h
+OBJ = main.o comm.o sound.o screen.o
+DEPS = sound.h screen.h comm.h
 
 APPNAME = sound.a
 
 #link rule
 $(APPNAME) : $(OBJ)
-	gcc -o $(APPNAME) $(OBJ) -lm
+	gcc -o $(APPNAME) $(OBJ) -lm -lcurl
 #compiling rule
 %.o : %.c $(DEPS)
 	gcc -c -o $@ $<

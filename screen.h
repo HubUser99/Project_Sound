@@ -1,5 +1,5 @@
 #define UNICODE		// use unicode to make good-looking bars
-#define BAR "\u2590"
+#define BAR  "\u2590"
 // constant definitions
 enum COLORS {BLACK = 30, RED = 31, GREEN = 32, YELLOW = 33, BLUE = 34, MAGENTA = 35, CYAN = 36, WHITE = 37};
 #define ESC 0x1B
