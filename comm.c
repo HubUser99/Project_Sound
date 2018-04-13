@@ -3,11 +3,16 @@
 #include <curl/curl.h>
 #include <math.h>
 
-// function definition, this function takes in 80 pieces of rms value, each
-// is calculated by 200 samples. The function should use these values to re-calculate
-// 8 pieces of fast decibel value. To do so, we need to put every 10 pieces of RMS
-// value, square them, multiply by 200, accumulate to a sum and then divide by 2000
-// then sqrt the result
+/**
+	function definition of sendToServer()
+	This function takes in 80 pieces of rms value, each
+	is calculated by 200 samples. The function should use these values to re-calculate
+	8 pieces of fast decibel value. To do so, we need to put every 10 pieces of RMS
+	value, square them, multiply by 200, accumulate to a sum and then divide by 2000
+	then sqrt the result
+	argument: double
+	return: no
+*/
 
 void sendToServer(double rms[]){
 	double fast[8], sum;

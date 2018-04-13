@@ -3,7 +3,13 @@
 #include "screen.h"
 #include <stdio.h>
 #include <math.h>
-// function definition of printID()
+/**
+	function definition of printID()
+	This function prints out the array of characters in one line
+	and moves the cursor to the next line
+	argument: char []
+	return: no
+*/
 void
 printID(char id[]){
 	int i;
@@ -13,7 +19,13 @@ printID(char id[]){
 	printf("\n");
 }
 
-// function definition of dispWAVData()
+/**
+	function definition of dispWAVData()
+	This function reads the data from the file which name was specified
+	in the input and sorts into the different variables
+	argument: char []
+	return: no
+*/
 void
 dispWAVData(char filename[]){
 	register i, j;	// loop counters
@@ -36,17 +48,26 @@ dispWAVData(char filename[]){
 		}
 		rms[i] = sqrt(sum / 200);
 #ifdef DEBUG
+	// if DEBUG IS defined, the program will be working in the debug mode
 		printf("rms[%d]: %10.4f, dB = %10.4f\n", i, rms[i], 20*log10(rms[i]));
 #else
+	// if DEBUG is NOT defined, the program will be using user interface mode
 		dispBar(i, 20*log10(rms[i]));
 #endif
 	}
 #ifdef COMM
+	// if COMM IS defined, the program will be sending the data to the server
 	sendToServer(rms);
 #endif
 }
 
-// function definition of dispWAVHeader()
+/**
+	function definition of dispWAVHeader()
+	This function displays all the information stored from the datafile
+	with the name specified by the given argument
+	argument: char []
+	return: no
+*/
 void
 dispWAVHeader(char filename[]){
 	FILE *fp;
