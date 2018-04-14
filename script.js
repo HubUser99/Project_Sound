@@ -18,7 +18,6 @@ $.ajaxSetup({
     // Disable caching of AJAX responses
     cache: false
 });
-
 function drawer() {
     myChart = new Chart(ctx, {
         type: 'bar',
@@ -57,10 +56,31 @@ function drawer() {
 function loader() {
     $.get('sound_log.txt', (data) => {
         array = data.split('\n');
-        rawData = array[array.length - 2];
-        prevRawData = array[array.length - 3];
-        levelData = rawData.substring(21, rawData.length);
+        prevRawData = array[array.length - 2].toString();
         prevLevelData = prevRawData.substring(21, prevRawData.length);
+
+        let temp = "";
+        let j = 0;
+
+        for (let i = 0; i < prevLevelData.length; i++) {
+            if (prevLevelData[i] !== ';') {
+                temp += prevLevelData[i];
+            } else {
+                prevLevelsArray[j] = parseFloat(temp);
+                temp = "";
+                j++;
+            }
+        }
+        prevLevelsArray[j] = parseFloat(temp);
+    });
+}
+
+function loaderPrev() {
+    $.get('sound_log.txt', (data) => {
+        array = data.split('\n');
+        rawData = array[array.length - 3].toString();
+        levelData = rawData.substring(21, rawData.length);
+
         let temp = "";
         let j = 0;
 
@@ -74,17 +94,6 @@ function loader() {
                 j++;
             }
         }
-
-        for (let i = 0; i < prevLevelData.length; i++) {
-            if (prevLevelData[i] !== ';') {
-                temp += prevLevelData[i];
-            } else {
-                prevLevelsArray[j] = parseFloat(temp);
-                temp = "";
-                j++;
-            }
-        }
-
         levelsArraydB[j] = Math.log(parseFloat(temp)) / Math.log(10) * 20;
         levelsArray[j] = parseFloat(temp);
     });
@@ -96,15 +105,16 @@ function updater(){
         if (prevLevelsArray[i] === levelsArray[i]) flag = false;
     }
     if (flag){
-        myChart.update();
-        for(let i = 0; i < levelsArray.length; i++){
-            prevLevelsArray[i] = levelsArray[i];
+        for(let j = 0; j < levelsArray.length; j++){
+            levelsArray[j] = prevLevelsArray[j];
         }
+        //loaderPrev();
+        myChart.update();
     }
 }
 
 $(()=> {
-    loader();
+    loaderPrev();
     drawer();
     setInterval(function () {
         loader();
