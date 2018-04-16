@@ -18,6 +18,7 @@ $.ajaxSetup({
     // Disable caching of AJAX responses
     cache: false
 });
+
 function drawer() {
     myChart = new Chart(ctx, {
         type: 'bar',
