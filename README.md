@@ -9,6 +9,8 @@ and send the data to the server.
 
 To run the program you need to use a Raspberry Pi 3 computer, an external soundcard and a microphone.
 
+#### Set USB Sound Card as Default
+
 1) Boot up RPi, and apply the USB sound card.
 
 2) RPi onboard sound card doesn’t have microphone interface. We have to change the default audio device to be USB sound card.
@@ -70,6 +72,18 @@ ctl.!default {
 │                                                                                                              │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+#### Install libcurl
+
+1) First use command “ls /usr/include/curl” to identify that /usr/include/curl/ folder exists or not.
+
+2) If the folder doesn’t exist. Run “sudo apt-get update” to update the application list.
+
+3) Run “sudo apt-get install libcurl3” to install the libcurl3.
+
+4) Run “sudo apt-get install libcurl4-openssl-dev” to install the development API of libcurl4.
+
+#### Copy the project folder
 
 Copy the source files of the project to your local directory from the GitHub.
 Use link: https://github.com/HubUser99/Project_Sound.git
