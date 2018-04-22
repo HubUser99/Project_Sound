@@ -110,3 +110,10 @@ in the "sound.h" file.
 To prevent program from sending data to the server, apply comment style to the
 definition of the COMM in the "comm.h" file.
 
+## Authors
+
+* **Egor Filonov** - *Initial work* - [HubUser99](https://github.com/HubUser99)
+
+## License
+
+This project is licensed under the GNU General Public License - see the [LICENSE.md](LICENSE.md) file for details
